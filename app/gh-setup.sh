@@ -57,6 +57,8 @@ echo "$GITHUB_TOKEN" | gh auth login --with-token
 
 echo "⚙️ Updating ~/.gitconfig to use gh as credential helper..."
 
+git config --global user.name "moh-amer"
+git config --global user.email "moh-amer@pharogrammer.com"
 git config --global credential.helper ""
 git config --global credential.helper "!gh auth git-credential"
 
@@ -71,4 +73,3 @@ echo "You can now use git and gh without entering your token again."
 # --- START CLAUDE ------------------------------------------------------------
 echo "Starting Claude..."
 claude
-
