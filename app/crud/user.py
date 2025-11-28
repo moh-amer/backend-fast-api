@@ -3,7 +3,7 @@ from app.models.user import User
 from app.schemas.user import UserCreate
 from passlib.context import CryptContext
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
 
 def get_user(db: Session, user_id: int):
     return db.query(User).filter(User.id == user_id).first()
