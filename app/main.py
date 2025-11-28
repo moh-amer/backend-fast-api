@@ -7,10 +7,10 @@ init_db()
 
 app = FastAPI(title="Inventory Management API", version="1.0.0")
 
-# Include routers
-app.include_router(auth.router)
-app.include_router(users.router)
-app.include_router(items.router)
+# Include routers with v1 prefix
+app.include_router(auth.router, prefix="/v1")
+app.include_router(users.router, prefix="/v1")
+app.include_router(items.router, prefix="/v1")
 
 @app.get("/")
 def read_root():
@@ -19,3 +19,7 @@ def read_root():
 @app.get("/health")
 def health_check():
     return {"status": "healthy"}
+
+@app.get("/v1")
+def read_v1_root():
+    return {"message": "Welcome to the Inventory Management API v1"}

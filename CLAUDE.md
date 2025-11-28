@@ -155,24 +155,25 @@ README.md                # Project documentation
 ## API Endpoints
 
 ### Authentication
-- `POST /register` - Register a new user
-- `POST /token` - Obtain an access token
+- `POST /v1/register` - Register a new user
+- `POST /v1/token` - Obtain an access token
 
 ### Health Check
 - `GET /` - Welcome message
 - `GET /health` - Health status check
+- `GET /v1` - Welcome message for v1 API
 
 ### Users
-- `GET /users/me/` - Get current user information
-- `GET /users/{user_id}` - Get a specific user
-- `PUT /users/me/` - Update current user
+- `GET /v1/users/me/` - Get current user information
+- `GET /v1/users/{user_id}` - Get a specific user
+- `PUT /v1/users/me/` - Update current user
 
 ### Items
-- `POST /items/` - Create a new item (authenticated)
-- `GET /items/` - Get all items
-- `GET /items/{item_id}` - Get a specific item
-- `PUT /items/{item_id}` - Update a specific item (owner only)
-- `DELETE /items/{item_id}` - Delete a specific item (owner only)
+- `POST /v1/items/` - Create a new item (authenticated)
+- `GET /v1/items/` - Get all items
+- `GET /v1/items/{item_id}` - Get a specific item
+- `PUT /v1/items/{item_id}` - Update a specific item (owner only)
+- `DELETE /v1/items/{item_id}` - Delete a specific item (owner only)
 
 ## Key Dependencies
 - FastAPI (0.104.1): Web framework with automatic API documentation

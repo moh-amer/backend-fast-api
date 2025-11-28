@@ -1,0 +1,16 @@
+INFO:     Started server process [4702]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     192.168.121.204:52774 - "GET / HTTP/1.1" 200 OK
+INFO:     192.168.121.204:52778 - "GET /v1 HTTP/1.1" 200 OK
+INFO:     192.168.121.204:54532 - "GET /v1/user/me HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:36884 - "GET / HTTP/1.1" 200 OK
+INFO:     192.168.121.204:56066 - "GET /v1/users/me HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:36892 - "GET /v1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42712 - "GET /v1/register HTTP/1.1" 405 Method Not Allowed
+INFO:     127.0.0.1:55040 - "GET /health HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [4702]
