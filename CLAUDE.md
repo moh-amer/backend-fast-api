@@ -133,9 +133,13 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 4
 ```
 app/
 ├── main.py              # Application entry point
+├── api/                 # API versions
+│   └── v1/              # Version 1 API endpoints
+│       ├── auth.py      # Authentication endpoints
+│       ├── users.py     # User management endpoints
+│       └── items.py     # Item inventory endpoints
 ├── models/              # Database models (user.py, item.py)
 ├── schemas/             # Pydantic schemas (user.py, item.py, token.py)
-├── routers/             # API route definitions (auth.py, users.py, items.py)
 ├── core/                # Core configuration and security (config.py, security.py, dependencies.py)
 ├── database/            # Database connection and session management (database.py, init_db.py)
 ├── crud/                # CRUD operations (user.py, item.py)

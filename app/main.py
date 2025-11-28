@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from app.database.init_db import init_db
-from app.routers import auth, users, items
+from app.api.v1 import auth, users, items
 
 # Initialize database
 init_db()
