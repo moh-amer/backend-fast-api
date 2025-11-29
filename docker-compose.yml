@@ -26,5 +26,13 @@ services:
       - db
     command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8088:8080
+    depends_on:
+      - db
+
 volumes:
   mysql_data:
