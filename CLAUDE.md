@@ -3,7 +3,7 @@
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
-This is a backend API built with FastAPI that provides user authentication with JWT and item inventory management. The application uses SQLite for data persistence and includes a complete REST API for managing users and inventory items.
+This is a backend API built with FastAPI that provides user authentication with JWT and item inventory management. The application supports both SQLite (for development) and MySQL (for production) databases with SQLAlchemy ORM for data persistence.
 
 ## Architecture Overview
 The application follows a modular architecture pattern with clear separation of concerns:
@@ -24,7 +24,7 @@ The application uses dependency injection for database sessions and follows Fast
 - Password hashing with bcrypt
 - CRUD operations for inventory items
 - Role-based access control
-- SQLite database with SQLAlchemy ORM
+- Database support for both SQLite (development) and MySQL (production) with SQLAlchemy ORM
 - Pydantic validation for request/response data
 - Health check endpoints
 - Automated database initialization
@@ -105,8 +105,12 @@ pip freeze > requirements.txt  # Update requirements file
 # The database is automatically initialized when the application starts
 # No manual database setup is required
 
-# To reset the database, delete the test.db file
+# For SQLite (development), to reset the database:
 rm test.db
+
+# For MySQL (production), use standard MySQL tools to reset the database
+# or remove the mysql_data volume in Docker:
+# docker-compose down -v
 ```
 
 ### Building and Deployment
@@ -116,11 +120,17 @@ rm test.db
 # Build Docker image
 docker build -t fastapi-inventory-app .
 
-# Run with Docker
+# Run with Docker (SQLite only)
 docker run -p 8000:8000 fastapi-inventory-app
 
-# Run with docker-compose
+# Run with docker-compose (includes MySQL database)
 docker-compose up --build
+
+# To stop and remove containers (data will persist in volumes)
+docker-compose down
+
+# To stop and remove containers AND volumes (will lose data)
+docker-compose down -v
 ```
 
 #### Manual Deployment
@@ -193,19 +203,22 @@ README.md                # Project documentation
 - flake8 (6.1.0): Code linter
 
 ## Database Design
-The application uses SQLite for simplicity, with two main tables:
+The application supports both SQLite (for development) and MySQL (for production) databases with the same table structure:
 
 1. **Users Table**: Stores user account information
    - id: Primary key
    - email: Unique email address
    - hashed_password: Bcrypt-hashed password
    - is_active: Boolean flag for account status
+   - is_superuser: Boolean flag for admin privileges
    - created_at: Timestamp of account creation
 
 2. **Items Table**: Stores inventory items
    - id: Primary key
    - title: Item name/title
    - description: Optional item description
+   - price: Float value for item price
+   - quantity: Integer value for item quantity (default: 0)
    - owner_id: Foreign key to Users table
    - created_at: Timestamp of item creation
 

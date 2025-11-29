@@ -7,6 +7,7 @@ A backend API built with Python FastAPI that provides user authentication with J
 - User registration and authentication with JWT
 - CRUD operations for inventory items
 - Secure API endpoints with role-based access control
+- Support for both SQLite (development) and MySQL (production) databases
 
 ## Installation
 
@@ -21,8 +22,36 @@ A backend API built with Python FastAPI that provides user authentication with J
    pip install -r requirements-dev.txt
    ```
 
+## Database Configuration
+
+The application supports both SQLite (default for development) and MySQL (recommended for production).
+
+### SQLite (Default)
+For local development, the application uses SQLite which requires no additional setup.
+
+### MySQL
+For production deployments, you can use MySQL with Docker Compose:
+
+1. Update the environment variables in `docker-compose.yml` as needed
+2. Run with Docker Compose:
+   ```bash
+   docker-compose up --build
+   ```
+
+Or set the DATABASE_URL environment variable when running manually:
+```bash
+export DATABASE_URL=mysql+pymysql://username:password@localhost:3306/database_name
+uvicorn app.main:app --reload
+```
+
 ## Running the Application
 
+### With Docker Compose (MySQL)
+```bash
+docker-compose up --build
+```
+
+### Manual (SQLite default)
 ```bash
 uvicorn app.main:app --reload
 ```
